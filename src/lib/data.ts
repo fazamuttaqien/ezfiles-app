@@ -1,4 +1,4 @@
-type PageType = "pdf" | "image" | "video" | "unknown";
+type PageType = "pdf" | "image" | "video" | "tour" | "unknown";
 export interface PageTool {
   slug: string;
   title: string;
@@ -47,6 +47,20 @@ export const pagesData: PageTool[] = [
       "Easily reduce video file sizes (AVI and MP4 ) online in seconds. No Quality compromise, No Watermark, and ready to use",
     keywords: ["compress video online", "reduce mp4 size", "reduce avi size"],
     pageType: "video",
+  },
+  {
+    slug: "tour-guide",
+    title: "Virtual Tour Guide: Explore Places with AI-Powered Guide | EZFiles",
+    metaDescription:
+      "Experience immersive virtual tours with AI-powered guide. Explore places, landmarks and destinations from anywhere in the world",
+    keywords: [
+      "virtual tour guide",
+      "AI tour guide",
+      "virtual travel",
+      "virtual exploration",
+      "interactive tours",
+    ],
+    pageType: "tour",
   },
 ];
 
