@@ -1,0 +1,30 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  IMAGE_NAME: registry.kecilin.id/ezfiles/landing-page
+
+build-dev:
+  stage: build
+  only:
+    - dev
+  tags:
+    - registry
+  script:
+    - docker build -t $IMAGE_NAME:dev
+      --build-arg NEXT_PUBLIC_WA_PHONE=$NEXT_PUBLIC_WA_PHONE
+      --build-arg NEXT_PUBLIC_WA_MESSAGE="$NEXT_PUBLIC_WA_MESSAGE"
+      --build-arg NEXT_PUBLIC_URL_AUTO_COMPRESS=$NEXT_PUBLIC_URL_AUTO_COMPRESS .
+    - docker push $IMAGE_NAME:dev
+
+deploy-dev:
+  stage: deploy
+  only:
+    - dev
+  tags:
+    - dev-server-new
+  script:
+    - cd /home/kecilinid/ezfiles
+    - docker compose -f apps.yaml pull landing-page
+    - docker compose -f apps.yaml up --force-recreate -d landing-page
