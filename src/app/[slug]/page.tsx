@@ -42,7 +42,7 @@ export default function Page({ params }: PageProps) {
   }
 
   return (
-    <CompressLayout fileType={page.pageType}>
+    <CompressLayout pageType={page.pageType}>
       <CompressUploader pageType={page.pageType} />
     </CompressLayout>
   );

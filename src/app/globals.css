@@ -12,7 +12,7 @@
   font-variation-settings: "wdth" 100;
 }
 
-.driverjs-theme .driver-popover {
+.driver-popover {
   background: white;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
@@ -20,32 +20,32 @@
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
-.driverjs-theme .driver-popover-title {
+.driver-popover-title {
   font-size: 18px;
   font-weight: 600;
   color: #1f2937;
   margin-bottom: 8px;
 }
 
-.driverjs-theme .driver-popover-description {
+.driver-popover-description {
   color: #6b7280;
   line-height: 1.5;
   margin-bottom: 16px;
 }
 
-.driverjs-theme .driver-popover-progress-text {
+.driver-popover-progress-text {
   font-size: 12px;
   color: #9ca3af;
   margin-bottom: 12px;
 }
 
-.driverjs-theme .driver-popover-navigation-btns {
+.driver-popover-navigation-btns {
   display: flex;
   gap: 8px;
   justify-content: flex-end;
 }
 
-.driverjs-theme .driver-popover-btn {
+.driver-popover-btn {
   padding: 8px 16px;
   border-radius: 6px;
   font-size: 14px;
@@ -56,18 +56,18 @@
   color: #374151;
 }
 
-.driverjs-theme .driver-popover-btn:hover {
+.driver-popover-btn:hover {
   background: #f9fafb;
   border-color: #9ca3af;
 }
 
-.driverjs-theme .driver-popover-next-btn {
+.driver-popover-next-btn {
   background: #3b82f6;
   color: white;
   border-color: #3b82f6;
 }
 
-.driverjs-theme .driver-popover-next-btn:hover {
+.driver-popover-next-btn:hover {
   background: #2563eb;
   border-color: #2563eb;
 }
@@ -84,6 +84,7 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none; /* Chrome, Safari */
 }
+
 .scrollbar-hide {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
