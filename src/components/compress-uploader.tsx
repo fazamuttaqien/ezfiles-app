@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import LoadingUpload from "@/components/compress/loading-upload";
 import CompressError from "@/components/compress/error";
-import CompressPreview from "./compress/preview";
+import CompressPreview from "@/components/compress/preview";
 
 type UploadStatus = "idle" | "uploading" | "success" | "error";
 

@@ -16,7 +16,7 @@ import { Separator } from "../ui/separator";
 import { UploadResponse } from "@/services/compress/api";
 import { useDownloadFile, useJobStatus } from "@/services/compress/action";
 import { formatFileSize, titleCase } from "@/lib/utils";
-import { CircularProgress } from "@/temporary/loading/circular-progress";
+import { CircularProgress } from "@/components/circular-progress";
 
 interface JobProps {
   resetUpload: () => void;

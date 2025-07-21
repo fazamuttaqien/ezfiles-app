@@ -31,7 +31,7 @@ export default function Home() {
           className="absolute inset-0 block md:hidden bg-cover bg-bottom bg-no-repeat"
           style={{
             backgroundImage:
-              "url('/assets/hero-background-moble.png'), linear-gradient(to bottom right, #60a5fa, #3b82f6, #2563eb)",
+              "url('/assets/hero-background-mobile.png'), linear-gradient(to bottom right, #60a5fa, #3b82f6, #2563eb)",
           }}
         />
         {/* Background Decorative Elements */}
@@ -194,7 +194,7 @@ export default function Home() {
               <img
                 alt="Phone Mockup"
                 src="/assets/hero-phone.png"
-                className="h-auto w-[280px] md:w-[320px] lg:w-[380px]"
+                className="h-auto w-[360px] md:w-[400px] lg:w-[460px]"
               />
             </div>
 

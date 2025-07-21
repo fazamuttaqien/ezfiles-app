@@ -39,7 +39,7 @@ export const uploadFiles = async (files: File[]): Promise<UploadResponse> => {
 
   try {
     const response = await axios.post<UploadResponse>(
-      `https://api-dev.ezfiles.ai/upload-compress/compress`,
+      `${API_BASE_URL}/upload-compress/compress`,
       formData,
       {
         headers: { "Content-Type": "multipart/form-data" },
@@ -59,7 +59,7 @@ export const getJobStatus = async (
 ): Promise<JobStatusResponse> => {
   try {
     const response = await axios.get<JobStatusResponse>(
-      `https://api-dev.ezfiles.ai/upload-compress/status/job/${jobId}`
+      `${API_BASE_URL}/upload-compress/status/job/${jobId}`
     );
     return response.data;
   } catch (error) {
@@ -75,7 +75,7 @@ export const getJobStatus = async (
 export const downloadFile = async (jobId: string): Promise<void> => {
   try {
     const response = await axios.get(
-      `https://api-dev.ezfiles.ai/upload-compress/download/${jobId}`,
+      `${API_BASE_URL}/upload-compress/download/${jobId}`,
       { responseType: "blob" }
     );
 

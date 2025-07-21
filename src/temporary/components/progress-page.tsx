@@ -1,6 +1,6 @@
 "use client";
 
-import { CircularProgress } from "../loading/circular-progress";
+import { CircularProgress } from "../../components/circular-progress";
 import { LineProgressBar } from "../loading/line-progress-bar";
 import { LoadingOverlay } from "../loading/loading-overlay";
 import { LoadingSpinner } from "../loading/loading-spinner";
