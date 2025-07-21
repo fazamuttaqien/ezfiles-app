@@ -1,4 +1,4 @@
-# landing-page
+# ezfiles-app
 
 ## Getting started
 
@@ -13,14 +13,14 @@ Already a pro? Just edit this README.md and make it your own. Want to make it ea
 
 ```
 cd existing_repo
-git remote add origin https://gitlab.com/kecilin-id/ezfiles/landing-page.git
+git remote add origin https://gitlab.com/fazamuttaqien/ezfiles-app.git
 git branch -M main
 git push -uf origin main
 ```
 
 ## Integrate with your tools
 
-- [ ] [Set up project integrations](https://gitlab.com/kecilin-id/ezfiles/landing-page/-/settings/integrations)
+- [ ] [Set up project integrations](https://gitlab.com/fazamuttaqien/ezfiles-app/-/settings/integrations)
 
 ## Collaborate with your team
 
