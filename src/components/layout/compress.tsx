@@ -2,13 +2,14 @@ import { ReactNode } from "react";
 import Image from "next/image";
 
 import { Card, CardContent } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
+import { cn, titleCase } from "@/lib/utils";
 
 interface Props {
   children: ReactNode;
+  fileType: string;
 }
 
-const CompressLayout = ({ children }: Props) => {
+const CompressLayout = ({ children, fileType }: Props) => {
   return (
     <section
       className={cn(
@@ -31,7 +32,7 @@ const CompressLayout = ({ children }: Props) => {
           <div className="flex flex-row items-center justify-between gap-4">
             <div>
               <h1 className="font-semibold text-neutral-800 text-xl sm:text-2xl leading-6">
-                PDF Compression
+                {titleCase(fileType)} Compression
               </h1>
               <p className="text-neutral-600 text-sm mt-1">
                 Maximum file size 100MB

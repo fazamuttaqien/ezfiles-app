@@ -81,6 +81,14 @@
   box-shadow: 0 0 0 4px #3b82f6;
 }
 
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

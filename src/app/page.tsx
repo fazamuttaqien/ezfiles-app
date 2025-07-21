@@ -17,17 +17,23 @@ import Image from "next/image";
 export default function Home() {
   return (
     <>
-      {/* Hero Section with Background */}
-      <section
-        className="relative min-h-screen from-blue-400 via-blue-500 to-blue-600 overflow-hidden"
-        style={{
-          backgroundImage:
-            "url('/assets/hero-background.png'), linear-gradient(to bottom right, #60a5fa, #3b82f6, #2563eb)",
-          backgroundSize: "cover",
-          backgroundPosition: "50% 100%",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
+      {/* Hero Section */}
+      <section className="relative flex items-center justify-center min-h-screen overflow-hidden">
+        <div
+          className="absolute inset-0 hidden md:block bg-cover bg-bottom bg-no-repeat"
+          style={{
+            backgroundImage:
+              "url('/assets/hero-background.png'), linear-gradient(to bottom right, #60a5fa, #3b82f6, #2563eb)",
+          }}
+        />
+
+        <div
+          className="absolute inset-0 block md:hidden bg-cover bg-bottom bg-no-repeat"
+          style={{
+            backgroundImage:
+              "url('/assets/hero-background-moble.png'), linear-gradient(to bottom right, #60a5fa, #3b82f6, #2563eb)",
+          }}
+        />
         {/* Background Decorative Elements */}
         <div className="absolute inset-0">
           <div className="absolute top-20 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
@@ -35,41 +41,36 @@ export default function Home() {
           <div className="absolute bottom-20 left-1/4 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
         </div>
 
-        {/* Hero Content */}
-        <div className="relative z-10 container mx-auto px-4 pt-32 pb-20">
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-[38px] leading-[45px] md:text-6xl lg:text-7xl font-bold text-white mb-6">
-              Every Tool You Need
-              <br />
-              To Process Files In <br className="md:hidden" />
-              <span className="text-blue-900">One Place</span>
-            </h1>
+        <div className="relative z-[1] text-center text-white px-4 pt-10 pb-6">
+          <div className="flex flex-col items-center">
+            <div className="space-y-2">
+              <h1 className="text-4xl md:text-6xl lg:text-5xl font-bold tracking-tight">
+                Every Tool You Need
+                <br />
+                To Process Files In <br className="md:hidden" />
+                <span className="text-blue-900">One Place</span>
+              </h1>
 
-            <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-4xl mx-auto text-center">
-              Advanced AI technology to compress and{" "}
-              <br className="md:hidden" /> optimize images, videos, audio,
-              <br className="md:hidden" /> PDFs, and more.
-              <br className="hidden md:block" /> Completely free with no
-              limitations.
-            </p>
-          </div>
+              <p className="max-w-2xl text-base md:text-md lg:text-lg text-white">
+                Advanced AI technology to compress and{" "}
+                <br className="md:hidden" /> optimize images, videos, audio,
+                <br className="md:hidden" /> PDFs, and more.
+                <br className="hidden md:block" /> Completely free with no
+                limitations.
+              </p>
+            </div>
 
-          {/* Decorative 3D Character Area */}
-          <div className="mt-16 flex justify-center">
-            <div className="relative top-12 md:top-0">
-              <div
-                style={{
-                  backgroundImage: "url('/assets/illustration.png')",
-                  backgroundSize: "contain",
-                  backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",
-                }}
-                className="w-64 h-64 md:w-[50rem] md:h-[40rem] flex items-center justify-center"
+            <div className="w-full mt-20 md:mt-0">
+              <img
+                src="/assets/illustration.png"
+                alt="Illustration of file processing tools"
+                className="w-full h-auto sm:max-w-xs md:max-w-sm mx-auto"
               />
             </div>
           </div>
         </div>
       </section>
+
       {/* Feature Section */}
       <section className="min-h-screen py-16 px-4 md:p-[128px]">
         <div className="flex flex-col justify-center items-center gap-6 md:gap-16">
@@ -127,6 +128,7 @@ export default function Home() {
           <FeatureGrid />
         </div>
       </section>
+
       {/* 3 Simple Steps */}
       <section className=" max-w-7xl mx-auto min-h-screen py-6 px-4 md:p-16">
         <div
@@ -182,6 +184,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       {/* Add from Indonesia Section */}
       <section className="min-h-screen bg-white py-8 px-4 md:px-8 lg:p-16">
         <div className="mx-auto w-full max-w-7xl">
@@ -190,7 +193,7 @@ export default function Home() {
             <div className="bg-slate-100 rounded-[30px] overflow-hidden flex items-end justify-center pt-8 px-4 sm:px-8">
               <img
                 alt="Phone Mockup"
-                src="/assets/samsung.png"
+                src="/assets/hero-phone.png"
                 className="h-auto w-[280px] md:w-[320px] lg:w-[380px]"
               />
             </div>
@@ -226,6 +229,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       {/* Privacy and Security Section */}
       <section className="py-8 px-6 flex flex-col gap-6 md:gap-16 md:py-20 md:px-28 bg-sky-100">
         <div>
@@ -259,6 +263,7 @@ export default function Home() {
           ))}
         </div>
       </section>
+
       {/* CTA Section */}
       <section className="px-6 py-8 md:p-32">
         <div

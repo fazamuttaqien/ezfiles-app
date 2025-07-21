@@ -13,10 +13,10 @@ import CompressPreview from "./compress/preview";
 type UploadStatus = "idle" | "uploading" | "success" | "error";
 
 interface CompressUploaderProps {
-  type: string;
+  pageType: string;
 }
 
-export default function CompressUploader({ type }: CompressUploaderProps) {
+export default function CompressUploader({ pageType }: CompressUploaderProps) {
   const [file, setFile] = useState<File | null>(null);
   const [uploadStatus, setUploadStatus] = useState<UploadStatus>("idle");
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -64,15 +64,15 @@ export default function CompressUploader({ type }: CompressUploaderProps) {
     noClick: true,
     noKeyboard: true,
     accept:
-      type === "video"
+      pageType === "video"
         ? {
             "video/*": [".mp4", ".mov", ".avi"],
           }
-        : type === "image"
+        : pageType === "image"
         ? {
             "image/*": [".jpeg", ".jpg", ".png", ".gif"],
           }
-        : type === "pdf"
+        : pageType === "pdf"
         ? {
             "application/pdf": [".pdf"],
           }
@@ -125,7 +125,8 @@ export default function CompressUploader({ type }: CompressUploaderProps) {
         <LoadingUpload
           fileName={file.name}
           fileSize={file.size}
-          fileProgress={uploadProgress}
+          pageType={pageType}
+          progress={uploadProgress}
         />
       )}
 
@@ -133,7 +134,7 @@ export default function CompressUploader({ type }: CompressUploaderProps) {
         <CompressPreview
           name={file.name}
           size={file.size}
-          type={type}
+          pageType={pageType}
           url={URL.createObjectURL(file)}
           file={file}
           resetUpload={resetUpload}

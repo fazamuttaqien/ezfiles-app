@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 // import localFont from "next/font/local";
-
-import "./globals.css";
 import { ReactQueryProvider } from "@/providers/react-query-provider";
+
 // import Header from "@/components/layout/header";
 // import Footer from "@/components/layout/footer";
+
+import "./globals.css";
+import "driver.js/dist/driver.css";
 
 // const leagueSpartanSans = localFont({
 //   src: "./fonts/LeagueSpartan-VariableFont_wght.ttf",
@@ -24,7 +26,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* <body className={`${leagueSpartanSans.variable} antialiased`}> */}
       <body>
         <ReactQueryProvider>
           {/* <Header /> */}

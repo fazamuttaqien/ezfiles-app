@@ -42,8 +42,8 @@ export default function Page({ params }: PageProps) {
   }
 
   return (
-    <CompressLayout>
-      <CompressUploader type={page.pageType} />
+    <CompressLayout fileType={page.pageType}>
+      <CompressUploader pageType={page.pageType} />
     </CompressLayout>
   );
 }

@@ -15,13 +15,16 @@ import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 import { UploadResponse } from "@/services/compress/api";
 import { useDownloadFile, useJobStatus } from "@/services/compress/action";
+import { formatFileSize, titleCase } from "@/lib/utils";
+import { CircularProgress } from "@/temporary/loading/circular-progress";
 
 interface JobProps {
   resetUpload: () => void;
   data: UploadResponse | null;
+  fileType: string;
 }
 
-const CompressSuccess = ({ data, resetUpload }: JobProps) => {
+const CompressSuccess = ({ data, resetUpload, fileType }: JobProps) => {
   const featureIconProps = {
     className: "h-3 w-3 text-blue-600",
     strokeWidth: 2,
@@ -59,8 +62,12 @@ const CompressSuccess = ({ data, resetUpload }: JobProps) => {
             Successfully Compressed
           </h1>
           <p className="text-md md:text-lg text-slate-600">
-            You have saved {dataJobStatus?.data.space_saving_percentage}% of
-            storage space.
+            You have saved{" "}
+            {Math.max(
+              0,
+              Math.min(100, dataJobStatus?.data.space_saving_percentage || 0)
+            )}
+            % of storage space.
           </p>
           <div className="text-lg lg:text-xl font-semibold flex items-center justify-center space-x-3">
             <span className="text-green-500 font-bold">
@@ -78,7 +85,7 @@ const CompressSuccess = ({ data, resetUpload }: JobProps) => {
               size="sm"
               className="font-semibold"
             >
-              Compress Another PDF
+              Compress Another {titleCase(fileType)}
             </Button>
             <Button
               size="sm"
@@ -86,11 +93,17 @@ const CompressSuccess = ({ data, resetUpload }: JobProps) => {
               className="bg-blue-400 text-white font-semibold hover:bg-blue-400"
             >
               <Download className="h-5 w-5" />
-              Download PDF
+              Download {titleCase(fileType)}
             </Button>
           </div>
         </div>
-        <ProgressCircle percentage={18} />
+        <div className="w-20 h-20 flex-shrink-0">
+          <CircularProgress
+            progress={dataJobStatus?.data.space_saving_percentage || 0}
+            size={85}
+            strokeWidth={10}
+          />
+        </div>
       </div>
 
       <div className="hidden lg:block">
@@ -196,57 +209,27 @@ const FeatureItem = ({
   </Link>
 );
 
-const ProgressCircle = ({ percentage }: { percentage: number }) => {
-  const radius = 45;
-  const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (percentage / 100) * circumference;
-
-  return (
-    <div className="relative w-20 h-20 flex-shrink-0">
-      <svg className="w-full h-full" viewBox="0 0 100 100">
-        {/* Lingkaran Latar Belakang */}
-        <circle
-          className="text-slate-200"
-          strokeWidth="10"
-          stroke="currentColor"
-          fill="transparent"
-          r={radius}
-          cx="50"
-          cy="50"
-        />
-        {/* Lingkaran Progress */}
-        <circle
-          className="text-blue-500"
-          strokeWidth="10"
-          strokeLinecap="round"
-          stroke="currentColor"
-          fill="transparent"
-          r={radius}
-          cx="50"
-          cy="50"
-          style={{
-            strokeDasharray: circumference,
-            strokeDashoffset: offset,
-            transform: "rotate(-90deg)",
-            transformOrigin: "50% 50%",
-            transition: "stroke-dashoffset 0.5s ease-in-out",
-          }}
-        />
-      </svg>
-      <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-xl font-bold text-slate-800">{percentage}%</span>
-        <span className="text-xs font-medium text-slate-500 tracking-wider">
-          SAVED
-        </span>
-      </div>
-    </div>
-  );
-};
-
-const formatFileSize = (bytes: number): string => {
-  if (bytes === 0) return "0 Bytes";
-  const k = 1024;
-  const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
-};
+// const ProgressCircle = ({ percentage }: { percentage: number }) => {
+//   return (
+//     <div className="relative w-20 h-20 flex-shrink-0">
+//       <svg className="w-full h-full" viewBox="0 0 100 100">
+//         {/* Lingkaran Latar Belakang */}
+//         <circle
+//           className="text-slate-200"
+//           strokeWidth="10"
+//           stroke="currentColor"
+//           fill="transparent"
+//           r={45}
+//           cx="50"
+//           cy="50"
+//         />
+//       </svg>
+//       <div className="absolute inset-0 flex flex-col items-center justify-center">
+//         <CircularProgress progress={percentage} size={80} strokeWidth={10} />
+//         <span className="text-sm font-medium text-slate-500 tracking-wider">
+//           Saved
+//         </span>
+//       </div>
+//     </div>
+//   );
+// };

@@ -1,9 +1,10 @@
+type PageType = "pdf" | "image" | "video" | "unknown";
 export interface PageTool {
   slug: string;
   title: string;
   metaDescription: string;
   keywords: string[];
-  pageType: string;
+  pageType: PageType;
 }
 
 export const pagesData: PageTool[] = [

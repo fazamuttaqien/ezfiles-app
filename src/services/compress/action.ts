@@ -7,16 +7,16 @@ export const useUploadFiles = () => {
   });
 };
 
+export const useDownloadFile = () => {
+  return useMutation<void, Error, string>({
+    mutationFn: downloadFile,
+  });
+};
+
 export const useJobStatus = (jobId: string) => {
   return useQuery({
     queryKey: ["compress-job-status", jobId],
     queryFn: () => getJobStatus(jobId),
     enabled: !!jobId,
-  });
-};
-
-export const useDownloadFile = () => {
-  return useMutation<void, Error, string>({
-    mutationFn: downloadFile,
   });
 };

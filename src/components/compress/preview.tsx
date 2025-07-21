@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, formatFileSize } from "@/lib/utils";
 import { useUploadFiles } from "@/services/compress/action";
 import LoadingCompress from "./loading-compress";
 import CompressError from "./error";
@@ -13,7 +13,7 @@ interface CompressPreviewProps {
   name: string;
   size: number;
   file: File;
-  type: string;
+  pageType: string;
   resetUpload: () => void;
 }
 
@@ -22,7 +22,7 @@ const CompressPreview = ({
   name,
   size,
   file,
-  type,
+  pageType,
   resetUpload,
 }: CompressPreviewProps) => {
   const { data, mutate, isError, isPending, isSuccess, isIdle } =
@@ -33,36 +33,36 @@ const CompressPreview = ({
       {isIdle && (
         <>
           <div className="flex flex-row items-center justify-center gap-4 py-4">
-            <div className="relative p-3 bg-slate-50 rounded-md">
-              {type === "video" ? (
-                <div className="flex flex-col items-center justify-center gap-2">
+            <div className="h-auto">
+              {pageType === "video" ? (
+                <div className="relative flex flex-col items-center justify-center">
                   <video
                     src={url}
                     controls
-                    className="w-full h-auto rounded-2xl"
+                    className="w-100 h-40 rounded-md"
                     style={{ aspectRatio: "16/9" }}
                   />
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className={cn(
+                      "absolute top-1 right-1 h-4 w-4 rounded-full bg-white/50 hover:bg-white"
+                    )}
+                    onClick={resetUpload}
+                    disabled={isPending}
+                  >
+                    <X className="w-4 h-4 cursor-pointer" />
+                  </Button>
                 </div>
-              ) : type === "image" ? (
+              ) : pageType === "image" ? (
                 <Image src={url} alt={name} width={144} height={144} />
               ) : (
                 <iframe
                   src={url}
-                  className="w-40 h-60 sm:w-44 overflow-hidden"
+                  className="w-40 h-60 sm:w-44 overflow-hidden scrollbar-hide"
                   title={name}
                 />
               )}
-              <Button
-                variant="ghost"
-                size="icon"
-                className={cn(
-                  "absolute top-4 right-4 h-4 w-4 rounded-full bg-white/50 hover:bg-white"
-                )}
-                onClick={resetUpload}
-                disabled={isPending}
-              >
-                <X className="w-4 h-4 cursor-pointer" />
-              </Button>
             </div>
             <div className="flex flex-col rounded-md p-3 gap-3">
               <div className="flex flex-col items-start gap-0">
@@ -82,7 +82,7 @@ const CompressPreview = ({
                   onClick={() => {
                     mutate([file]);
                   }}
-                  className="h-8 px-3 text-xs rounded-md bg-blue-300 text-white hover:bg-blue-400"
+                  className="h-8 px-3 text-xs rounded-md bg-blue-500 text-white hover:bg-blue-600"
                   disabled={isPending}
                 >
                   Compress Now
@@ -93,10 +93,16 @@ const CompressPreview = ({
         </>
       )}
 
-      {isPending && <LoadingCompress resetUpload={resetUpload} />}
+      {isPending && (
+        <LoadingCompress resetUpload={resetUpload} pageType={pageType} />
+      )}
 
       {isSuccess && data?.data && (
-        <CompressSuccess data={data ? data : null} resetUpload={resetUpload} />
+        <CompressSuccess
+          data={data ? data : null}
+          fileType={pageType}
+          resetUpload={resetUpload}
+        />
       )}
 
       {isError && data && <CompressError resetUpload={resetUpload} />}
@@ -105,11 +111,3 @@ const CompressPreview = ({
 };
 
 export default CompressPreview;
-
-const formatFileSize = (bytes: number): string => {
-  if (bytes === 0) return "0 Bytes";
-  const k = 1024;
-  const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
-};
