@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 // import localFont from "next/font/local";
 import { ReactQueryProvider } from "@/providers/react-query-provider";
 
-// import Header from "@/components/layout/header";
-// import Footer from "@/components/layout/footer";
+import Header from "@/components/layout/header";
+import Footer from "@/components/layout/footer";
 
 import "./globals.css";
 import "driver.js/dist/driver.css";
@@ -22,9 +22,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ReactQueryProvider>
-          {/* <Header /> */}
+          <Header />
           {children}
-          {/* <Footer /> */}
+          <Footer />
         </ReactQueryProvider>
       </body>
     </html>

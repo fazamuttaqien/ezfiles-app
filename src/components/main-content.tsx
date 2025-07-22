@@ -16,7 +16,7 @@ interface CompressUploaderProps {
   pageType: string;
 }
 
-export default function CompressUploader({ pageType }: CompressUploaderProps) {
+export default function MainContent({ pageType }: CompressUploaderProps) {
   const [file, setFile] = useState<File | null>(null);
   const [uploadStatus, setUploadStatus] = useState<UploadStatus>("idle");
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -24,6 +24,7 @@ export default function CompressUploader({ pageType }: CompressUploaderProps) {
   const simulateUpload = async (fileToUpload: File) => {
     setUploadStatus("uploading");
     setUploadProgress(0);
+
     try {
       const fileSizeInMB = fileToUpload.size / (1024 * 1024);
       const totalTimeMs = Math.max(1000, fileSizeInMB * 1000);
@@ -38,6 +39,7 @@ export default function CompressUploader({ pageType }: CompressUploaderProps) {
     } catch (error) {
       setUploadStatus("error");
     }
+
   };
 
   const onDrop = useCallback((acceptedFiles: File[], rejectedFiles: any[]) => {

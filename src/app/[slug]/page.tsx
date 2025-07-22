@@ -1,9 +1,8 @@
 import { notFound } from "next/navigation";
 import { getPageBySlug, pagesData } from "@/lib/data";
 import type { Metadata } from "next";
-import CompressLayout from "@/components/layout/compress";
-import CompressUploader from "@/components/compress-uploader";
-import TourGuideComponent from "@/components/tour-guide";
+import MainLayout from "@/components/layout/main";
+import MainContent from "@/components/main-content";
 
 interface PageProps {
   params: {
@@ -43,12 +42,8 @@ export default function Page({ params }: PageProps) {
   }
 
   return (
-    <CompressLayout pageType={page.pageType}>
-      {page.pageType === "tour" ? (
-        <TourGuideComponent />
-      ) : (
-        <CompressUploader pageType={page.pageType} />
-      )}{" "}
-    </CompressLayout>
+    <MainLayout pageType={page.pageType}>
+      <MainContent pageType={page.pageType} />
+    </MainLayout>
   );
 }

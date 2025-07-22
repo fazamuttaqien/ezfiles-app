@@ -16,8 +16,8 @@ interface TourGuideProps {
     | "ghost"
     | "link";
   className?: string;
-  popoverWidth?: number | string; // Custom popover width
-  popoverMaxWidth?: number | string; // Custom max width
+  popoverWidth?: number | string;
+  popoverMaxWidth?: number | string;
 }
 
 export const TourGuide: React.FC<TourGuideProps> = ({
@@ -25,8 +25,8 @@ export const TourGuide: React.FC<TourGuideProps> = ({
   buttonText = "Start Tour",
   buttonVariant = "outline",
   className,
-  popoverWidth = 350, // Default width
-  popoverMaxWidth = 400, // Default max width
+  popoverWidth = 350,
+  popoverMaxWidth = 400,
 }) => {
   const startTour = () => {
     const styleId = "tour-guide-custom-styles";
@@ -224,8 +224,8 @@ export const TourGuide: React.FC<TourGuideProps> = ({
       showButtons: ["next", "close"],
       steps: steps,
       progressText: "{{current}} of {{total}}",
-      nextBtnText: "Next →",
-      doneBtnText: "Finish ✓",
+      nextBtnText: "Next",
+      doneBtnText: "Finish",
       popoverClass: "driverjs-theme",
 
       onPopoverRender: (popover, { config, state }) => {

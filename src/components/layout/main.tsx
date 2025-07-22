@@ -9,7 +9,7 @@ interface Props {
   pageType: string;
 }
 
-const CompressLayout = ({ children, pageType }: Props) => {
+const MainLayout = ({ children, pageType }: Props) => {
   return (
     <section
       className={cn(
@@ -76,4 +76,4 @@ const CompressLayout = ({ children, pageType }: Props) => {
   );
 };
 
-export default CompressLayout;
+export default MainLayout;
